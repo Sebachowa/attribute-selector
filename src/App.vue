@@ -1,17 +1,21 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <BaseCard :data="tank"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import BaseCard from './components/BaseCard.vue';
 
 export default {
   name: 'App',
+  data: () => (),
+  created() {
+    this.$store.dispatch('getInitialStats');
+  },
   components: {
-    HelloWorld,
+    BaseCard,
   },
 };
 </script>
