@@ -10,7 +10,17 @@ import BaseCard from './components/BaseCard.vue';
 
 export default {
   name: 'App',
-  data: () => (),
+  data: () => (
+    {
+      tank: {
+        name: 'Tank',
+        stats: [
+          { name: 'STR', value: 3 },
+          { name: 'STR', value: 3 },
+        ],
+      },
+    }
+  ),
   created() {
     this.$store.dispatch('getInitialStats');
   },
