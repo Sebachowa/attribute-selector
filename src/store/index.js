@@ -1,12 +1,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import attributeService from '@/services/AttributeService';
+import attributeService from '../services/AttributeService';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    data: undefined,
+    data: {},
+  },
+  getters: {
+    fighters: (state) => state.data.characters,
   },
   mutations: {
     setInitialStats(state, response) {
