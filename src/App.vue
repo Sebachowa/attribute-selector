@@ -1,12 +1,15 @@
 <template>
   <div id="app" class="container">
-    <BaseCard v-for="(fighter, index) in fighters" :key="index" :data="fighter"/>
+    <BaseCard v-for="(fighter, index) in fighters" :key="`fighter-${index}`" :data="fighter"/>
+
+    <BaseSlider v-for="(stat, index) in attributeList" :key="`stat-${index}`" :data="stat" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import BaseCard from './components/BaseCard.vue';
+import BaseCard from '@/components/BaseCard.vue';
+import BaseSlider from '@/components/BaseSlider.vue';
 
 export default {
   name: 'App',
@@ -15,9 +18,10 @@ export default {
   },
   components: {
     BaseCard,
+    BaseSlider,
   },
   computed: {
-    ...mapGetters(['fighters']),
+    ...mapGetters(['fighters', 'attributeList']),
   },
 };
 </script>

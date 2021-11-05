@@ -5,6 +5,7 @@
       <h2>{{ stat.name }}</h2>
       <p>{{ stat.value }}</p>
     </article>
+    <button v-on:click="selectCharacter">Select me!</button>
   </article>
 </template>
 
@@ -13,6 +14,11 @@ export default {
   name: 'BaseCard',
   props: {
     data: Object,
+  },
+  methods: {
+    selectCharacter() {
+      this.$store.dispatch('selectCharacter', this.data);
+    },
   },
 };
 </script>
