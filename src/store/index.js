@@ -7,19 +7,29 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     data: {},
+    selectedCharacter: null,
   },
   getters: {
     fighters: (state) => state.data.characters,
+    attributeList: (state) => state.data.characters[0].stats.map((s) => s.name),
+    selectedCharacter: (state) => state.selectedCharacter,
   },
   mutations: {
     setInitialStats(state, response) {
       state.data = response;
     },
+    setSelectedCharacter(state, character) {
+      state.selectedCharacter = character;
+    },
   },
   actions: {
-    getInitialStats({ commit }) {
-      const response = attributeService.getInitialStats();
+    async getInitialStats({ commit }) {
+      const response = await attributeService.getInitialStats();
+
       commit('setInitialStats', response);
+    },
+    selectCharacter({ commit }, character) {
+      commit('setSelectedCharacter', character);
     },
   },
   modules: {

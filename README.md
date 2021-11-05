@@ -1,6 +1,11 @@
 # attribute-selector
-abraham ha hecho push
-ivan ha hecho push
+
+## Estado de la última sesión
+
+Ya tenemos la conexión con la API, así cómo una parte de la lógica en el estado,
+en la próxima sesión habrá que trabajar la conexión entre la **store->selectedCharacter** y los componentes de los sliders.
+
+
 ## Project setup
 ```
 npm install
@@ -28,3 +33,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
