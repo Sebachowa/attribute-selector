@@ -2,25 +2,43 @@
   <div id="app" class="container">
     <BaseCard v-for="(fighter, index) in fighters" :key="`fighter-${index}`" :data="fighter"/>
 
-    <BaseSlider v-for="(stat, index) in attributeList" :key="`stat-${index}`" :data="stat" />
+    <BaseSlider v-for="(stat, index) in attributeList"
+    :key="`stat-${index}`"
+    :data="stat"
+    :id="stat"
+    :value="characterStats ? characterStats.stats[index].value : 0"
+    />
+
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import BaseCard from '@/components/BaseCard.vue';
 import BaseSlider from '@/components/BaseSlider.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      characterStats: [],
+    };
+  },
   created() {
+    this.$root.$on('selectStats', () => this.updateStats());
     this.$store.dispatch('getInitialStats');
+  },
+  methods: {
+    updateStats() {
+      this.characterStats = this.selectedCharacter;
+    },
   },
   components: {
     BaseCard,
     BaseSlider,
   },
   computed: {
+    ...mapState(['selectedCharacter']),
     ...mapGetters(['fighters', 'attributeList']),
   },
 };

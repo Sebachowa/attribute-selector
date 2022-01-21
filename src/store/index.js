@@ -11,7 +11,10 @@ export default new Vuex.Store({
   },
   getters: {
     fighters: (state) => state.data.characters,
-    attributeList: (state) => state.data.characters[0].stats.map((s) => s.name),
+    attributeList: (state) => {
+      if (state.data.characters) { return state.data.characters[0].stats.map((s) => s.name); }
+      return [];
+    },
     selectedCharacter: (state) => state.selectedCharacter,
   },
   mutations: {
