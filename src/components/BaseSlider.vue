@@ -3,7 +3,7 @@
     <legend>{{ data }}</legend>
     <input type="number" name=""
     :id="`stat-${id}`"
-    :value="value"
+    v-model="localValue"
      >
 
   </fieldset>
@@ -17,6 +17,16 @@ export default {
     data: String,
     id: String,
     value: Number,
+  },
+  data() {
+    return {
+      localValue: this.value,
+    };
+  },
+  watch: {
+    localValue() {
+      this.$emit('input', parseInt(this.localValue, 10));
+    },
   },
 };
 </script>

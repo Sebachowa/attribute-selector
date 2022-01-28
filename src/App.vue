@@ -2,13 +2,17 @@
   <div id="app" class="container">
     <BaseCard v-for="(fighter, index) in fighters" :key="`fighter-${index}`" :data="fighter"/>
 
-    <BaseSlider v-for="(stat, index) in attributeList"
-    :key="`stat-${index}`"
-    :data="stat"
-    :id="stat"
-    :value="selectedCharacter ? selectedCharacter.stats[index].value : 0"
-    />
+    <template v-if="selectedCharacter">
+      <BaseSlider v-for="(stat, index) in attributeList"
+      :key="`stat-${index}`"
+      :data="stat"
+      :id="stat"
+      :value="selectedCharacter.stats[index].value"
+      v-model="selectedCharacter.stats[index].value"
+      />
+    </template>
 
+    <code>{{selectedCharacter}}</code>
   </div>
 </template>
 
@@ -22,6 +26,7 @@ export default {
   data() {
     return {
       characterStats: [],
+      stats: null,
     };
   },
   created() {
