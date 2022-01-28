@@ -18,7 +18,6 @@ export default {
   methods: {
     selectCharacter() {
       this.$store.dispatch('selectCharacter', this.data);
-      this.$root.$emit('selectStats');
     },
   },
 };

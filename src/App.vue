@@ -6,7 +6,7 @@
     :key="`stat-${index}`"
     :data="stat"
     :id="stat"
-    :value="characterStats ? characterStats.stats[index].value : 0"
+    :value="selectedCharacter ? selectedCharacter.stats[index].value : 0"
     />
 
   </div>
@@ -25,13 +25,7 @@ export default {
     };
   },
   created() {
-    this.$root.$on('selectStats', () => this.updateStats());
     this.$store.dispatch('getInitialStats');
-  },
-  methods: {
-    updateStats() {
-      this.characterStats = this.selectedCharacter;
-    },
   },
   components: {
     BaseCard,
