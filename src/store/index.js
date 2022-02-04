@@ -16,6 +16,9 @@ export default new Vuex.Store({
       return [];
     },
     selectedCharacter: (state) => state.selectedCharacter,
+    getMaxPoints: (state) => state.maxPoints,
+    maxPointsByStat: (state) => state.data.maxPointsByStat,
+    minPointsByStat: (state) => state.data.minPointsByStat,
   },
   mutations: {
     setInitialStats(state, response) {

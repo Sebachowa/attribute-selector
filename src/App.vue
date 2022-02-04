@@ -8,11 +8,11 @@
       :data="stat"
       :id="stat"
       :value="selectedCharacter.stats[index].value"
+      :min="minPointsByStat"
+      :max="maxPointsByStat"
       v-model="selectedCharacter.stats[index].value"
       />
     </template>
-
-    <code>{{selectedCharacter}}</code>
   </div>
 </template>
 
@@ -38,7 +38,11 @@ export default {
   },
   computed: {
     ...mapState(['selectedCharacter']),
-    ...mapGetters(['fighters', 'attributeList']),
+    ...mapGetters(['fighters', 'attributeList', 'minPointsByStat', 'maxPointsByStat', 'getMaxPoints']),
+    sumAttributes() {
+      const reducer = (sum, { value }) => Number(sum) + Number(value);
+      return this.selectedCharacter.stats.reduce(reducer, 0);
+    },
   },
 };
 </script>
